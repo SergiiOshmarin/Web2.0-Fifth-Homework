@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="main.css" />
-</head>
-
-<body>
-  <form id="formChat">
-    <input type="text" id="textField" />
-    <button type="submit">Exchange</button>
-  </form>
-  <div id="subscribe"></div>
-  <script src="main.js"></script>
-</body>
-
+  <head>
+    <meta charset="utf-8">
+    <title>Exchange rates</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <form id="formChat" class="form">
+      <div class="form-group">
+        <label for="textField">Number of days (1-10):</label>
+        <input id="textField" type="text" placeholder="Enter number of days">
+      </div>
+      <!-- Add a new div element with the comment -->
+      <div id="exchange-comment">Exchange button creates a request to the Privat Bank API and shows the currency for the requested number of days. Please type the number of days required.It can take some time for response.</div>
+      <div class="form-group">
+        <!-- Insert the div element before the exchange button -->
+        <button id="exchangeButton" type="submit" insertAdjacentHTML(
+          "beforebegin",
+          '<div id="exchange-comment">Exchange button </div></button>
+      </div>
+    </form>
+    <div id="subscribe"></div>
+    <script src="main.js"></script>
+  </body>
 </html>
+
+

@@ -1,22 +1,27 @@
+/* Style the form elements */
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
-input[type=text] {
-    width: 300px;
-    border: 1px solid lightseagreen;
-    padding: 5px 10px;
-    color: darkred;
-    font-size: 16px;
-    font-family: 'Cambria', 'Cochin', 'Georgia', 'Times', 'Times New Roman', serif;
-  }
-  
-  button {
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    font-size: 16px;
-  }
-  
-  #subscribe {
-    color: darkblue;
-    font-size: 14px;
-    font-family: 'Courier New', 'Courier', monospace;
-    margin-top: 20px;
-  }
+input[type="text"] {
+  width: 200px;
+  height: 30px;
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 0 10px;
+}
+
+button[type="submit"] {
+  width: 200px;
+  height: 30px;
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+/* Style the div element with the comment */
+#exchange-comment {
+  color: red;
+}
