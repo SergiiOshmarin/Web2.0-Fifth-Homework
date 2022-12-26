@@ -2,6 +2,7 @@ import asyncio
 import logging
 import websockets
 import aiohttp
+import argparse
 from datetime import datetime, timedelta
 from websockets import WebSocketServerProtocol
 from websockets.exceptions import ConnectionClosedOK
@@ -73,11 +74,31 @@ class Server:
                 # Encode the rates as bytes and write them to the client
                 await ws.send(str(rates))
 
-
-async def main():
+async def main(*argv):
     server = Server()
     async with websockets.serve(server.ws_handler, 'localhost', 8000):
-        await asyncio.Future()  # run forever
+        # Use the command line argument for the number of days if provided,
+        # otherwise run the server indefinitely
+        try:
+            days = int(argv[0])
+            if days < 1 or days > 10:
+                raise ValueError
+        except (TypeError,IndexError, ValueError):
+            print("Please go to server and type correct number from 1 to 10")
+            await asyncio.Future()
+        else:
+            # Get the exchange rates
+            rates = await api(days)
+            # Encode the rates as bytes and write them to the client
+            print(str(rates))
+            print("Now you can try local server and type correct number from 1 to 10, and presss Exchange button")
+            await asyncio.Future()
+
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    # Parse the command line arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument("days", nargs="?", type=int, help="number of days for which to get the exchange rates")
+    args = parser.parse_args()
+    asyncio.run(main(args.days))
+
